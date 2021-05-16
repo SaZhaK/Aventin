@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авентин</title>
+    <link rel="stylesheet" th:href="@{/css/main_styles.css}"/>
+</head>
+<body>
+
+<div id="logo_container">
+    <img id="logo" th:src="@{/image/aventin_logo.png}">
+</div>
+
+<div id="main_container">
+    <div id="admin_text">
+        Инструменты администратора
+    </div>
+
+    <div id="send_button_container">
+        <form method="POST" th:action="@{/parse}">
+            <button id="send_button" type="submit">Выгрузка данных</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
