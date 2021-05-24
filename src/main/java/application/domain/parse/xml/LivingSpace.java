@@ -2,14 +2,12 @@ package application.domain.parse.xml;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "living-space")
 @Data
-@ToString
 @EqualsAndHashCode
 public class LivingSpace {
 	private String value;
@@ -23,5 +21,14 @@ public class LivingSpace {
 	@XmlElement(name = "unit")
 	public void setUnit(String unit) {
 		this.unit = unit;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder livingSpace = new StringBuilder();
+		if (value != null) {
+			livingSpace.append(value).append(" ").append(unit);
+		}
+		return livingSpace.toString();
 	}
 }

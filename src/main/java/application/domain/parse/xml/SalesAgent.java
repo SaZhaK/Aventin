@@ -2,14 +2,12 @@ package application.domain.parse.xml;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "sales-agent")
 @Data
-@ToString
 @EqualsAndHashCode
 public class SalesAgent {
 	private String name;
@@ -47,5 +45,25 @@ public class SalesAgent {
 	@XmlElement(name = "phone")
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder agent = new StringBuilder();
+
+		if (phone != null) {
+			agent.append("\nТелефон: ").append(phone);
+		}
+		if (email != null) {
+			agent.append("\nПочта: ").append(email);
+		}
+		if (name != null) {
+			agent.append("\n").append(name);
+		}
+		if (category != null && organization != null) {
+			agent.append("\n").append(category).append(" ").append(organization);
+		}
+
+		return agent.toString();
 	}
 }

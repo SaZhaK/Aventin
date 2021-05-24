@@ -2,14 +2,12 @@ package application.domain.parse.xml;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "price")
 @Data
-@ToString
 @EqualsAndHashCode
 public class Price {
 	private String value;
@@ -23,5 +21,14 @@ public class Price {
 	@XmlElement(name = "currency")
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder price = new StringBuilder();
+		if (value != null) {
+			price.append(value).append(" ").append(currency);
+		}
+		return price.toString();
 	}
 }

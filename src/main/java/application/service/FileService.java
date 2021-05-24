@@ -23,6 +23,10 @@ public class FileService {
 			Files.createDirectory(Paths.get("src/main/resources/xml"));
 		}
 
+		if (Files.exists(Paths.get(fileProperties.getRootDirectory()))) {
+			Files.delete(Paths.get(fileProperties.getRootDirectory()));
+		}
+
 		File targetFile = new File(fileProperties.getRootDirectory());
 
 		InputStream initialStream = multipartFile.getInputStream();

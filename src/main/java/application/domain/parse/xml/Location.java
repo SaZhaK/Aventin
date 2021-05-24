@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "location")
 @Data
-@ToString
 @EqualsAndHashCode
 public class Location {
 	private String country;
@@ -47,5 +46,29 @@ public class Location {
 	@XmlElement(name = "metro")
 	public void setMetro(Metro metro) {
 		this.metro = metro;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder location = new StringBuilder();
+		if (country != null) {
+			location.append("\n").append(country);
+		}
+		if (region != null) {
+			location.append(", ").append(region);
+		}
+		if (district != null) {
+			location.append(", ").append(district);
+		}
+		if (localityName != null ) {
+			location.append(", ").append(localityName);
+		}
+		if (address != null) {
+			location.append(", ").append(address);
+		}
+		if (metro != null) {
+			location.append(", ").append(metro.toString());
+		}
+		return location.toString();
 	}
 }
