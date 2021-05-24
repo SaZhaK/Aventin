@@ -1,11 +1,18 @@
-create table if not exists t_user (
-  id       serial,
-  username    varchar(256),
-  password varchar(256),
-  passwordConfirm varchar(256)
+create table if not exists t_user
+(
+  id              serial,
+  username        varchar(255),
+  password        varchar(255)
 );
 
-create table if not exists t_role (
+create table if not exists t_role
+(
   id       serial,
-  name    varchar(256)
+  name     varchar(255)
+);
+
+create table if not exists t_user_roles
+(
+  user_id       bigint not null,
+  roles_id      bigint not null
 );
