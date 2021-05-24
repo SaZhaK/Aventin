@@ -10,6 +10,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Service
 @AllArgsConstructor
@@ -17,6 +19,10 @@ public class FileService {
 	private final FileProperties fileProperties;
 
 	public void saveFile(MultipartFile multipartFile) throws IOException {
+		if (!Files.exists(Paths.get("src/main/resources/xml"))) {
+			Files.createDirectory(Paths.get("src/main/resources/xml"));
+		}
+
 		File targetFile = new File(fileProperties.getRootDirectory());
 
 		InputStream initialStream = multipartFile.getInputStream();
