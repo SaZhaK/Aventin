@@ -1,6 +1,6 @@
 create table if not exists t_user (
   id       serial,
-  login    varchar(32),
+  username    varchar(32),
   password varchar(32),
   passwordConfirm varchar(32)
 );
