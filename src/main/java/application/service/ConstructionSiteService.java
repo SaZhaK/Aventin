@@ -2,6 +2,8 @@ package application.service;
 
 import application.domain.parse.xml.Offer;
 import application.domain.parse.xml.RealtyFeed;
+import application.properties.FileProperties;
+import lombok.AllArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ConstructionSiteService {
-	private final String XML = "src/main/resources/xml/data.xml";
+	private final FileProperties fileProperties;
 
 	public List<JSONObject> getAllSites() throws JAXBException, IOException {
 		List<JSONObject> sites = new ArrayList<>();
@@ -50,6 +53,6 @@ public class ConstructionSiteService {
 
 	private RealtyFeed parseXML() throws JAXBException, IOException {
 		JAXBContext context = JAXBContext.newInstance(RealtyFeed.class);
-		return (RealtyFeed) context.createUnmarshaller().unmarshal(new FileReader(XML));
+		return (RealtyFeed) context.createUnmarshaller().unmarshal(new FileReader(fileProperties.getRootDirectory()));
 	}
 }

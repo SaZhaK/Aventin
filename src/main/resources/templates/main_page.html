@@ -19,6 +19,20 @@
     </div>
 
     <div id="send_button_container">
+        <form method="POST" th:action="@{/file}" enctype="multipart/form-data">
+            <div id="upload_file_container">
+                <div id="choose_file_text">
+                    Выберите файл
+                </div>
+                <div id="input_file">
+                    <input type="file" name="file"/>
+                </div>
+                <div>
+                    <input id="upload_button" type="submit" value="Загрузить"/>
+                </div>
+            </div>
+        </form>
+
         <form method="POST" th:action="@{/parse}">
             <button id="send_button" type="submit">Выгрузка данных</button>
         </form>

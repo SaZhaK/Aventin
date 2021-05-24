@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" th:href="@{css/login_styles.css}">
+</head>
+<body>
+<main>
+    <div class="main-card">
+        <form method="POST" action="/login">
+            <p class="heading">Логин:</p>
+            <input name="username"
+                   class="input-field" type="text" placeholder="Username" autofocus="true">
+
+            <p class="heading">Пароль:</p>
+            <input class="input-field" name="password"
+                   type="password" placeholder="Password"> <br>
+            <div align="center">
+                <button type="submit" class="submit button">
+                    <span class="enter">Войти</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer>
+</footer>
+</body>
+</html>

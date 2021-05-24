@@ -38,6 +38,35 @@ body {
     font-size: 140%;
 }
 
+#upload_file_container {
+    width: 50%;
+    height: 10%;
+    margin: 1% 25% 5% 30%;
+}
+
+#choose_file_text {
+    width: 50%;
+    height: 10%;
+    margin: 0% 25% 5% 28%;
+    font-family: sans-serif;
+    font-size: 110%;
+}
+
+#input_file {
+    width: 50%;
+    height: 10%;
+    margin: 0% 30% 5% 20%;
+}
+
+#upload_button {
+    width: 30%;
+    height: 6%;
+    font-size: 100%;
+    text-align: center;
+    border-radius: 5%;
+    margin: 1% 35% 5% 25%;
+}
+
 #send_button {
     width: 40%;
     height: 6%;
