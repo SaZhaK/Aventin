@@ -57,12 +57,18 @@ public class ConstructionSiteService {
 	}
 
 	private String formDescription(Offer offer) {
-		StringBuilder description = new StringBuilder();
+		StringBuilder info = new StringBuilder();
 		if (offer.getPrice() != null) {
-			description.
-					append("Цена: ").
-					append(offer.getPrice().toString()).
-					append(offer.getMortgage() != null && offer.getMortgage().equals("да") ? "\nВозможна ипотека" : "");
+			if (offer.getType().equals("продажа")) {
+				info.
+						append("Цена: ").
+						append(offer.getPrice().toString()).
+						append(offer.getMortgage() != null && offer.getMortgage().equals("да") ? "\nВозможна ипотека" : "");
+			} else if (offer.getType().equals("аренда")) {
+				info.
+						append("Стоимость аренды: ").
+						append(offer.getPrice().toString());
+			}
 		}
 
 		if (offer.getArea() != null ||
@@ -71,76 +77,85 @@ public class ConstructionSiteService {
 				offer.getFloor() != null ||
 				offer.getDealStatus() != null
 		) {
-			description.append("\n\nОбщая информация:");
+			info.append("\n\nОбщая информация:");
 		}
 
 		if (offer.getArea() != null) {
-			description.
+			info.
 					append("\nОбщая площадь: ").
 					append(offer.getArea().toString());
 		}
 
 		if (offer.getLivingSpace() != null) {
-			description.
+			info.
 					append("\nПлощадь комнат: ").
 					append(offer.getLivingSpace().toString());
 		}
 
 		if (offer.getKitchenSpace() != null) {
-			description.
+			info.
 					append("\nПлощадь кухни: ").
 					append(offer.getKitchenSpace().toString());
 		}
 
 		if (offer.getFloor() != null) {
-			description.
+			info.
 					append("\nЭтаж: ").
 					append(offer.getFloor());
 		}
 
 		if (offer.getDealStatus() != null) {
-			description.
+			info.
 					append("\nТип сделки: ").
 					append(offer.getDealStatus());
 		}
 
 		if (offer.getBuildingType() != null ||
 				offer.getBuiltYear() != null) {
-			description.append("\n\nИнформация о доме:");
+			info.append("\n\nИнформация о доме:");
 
 		}
 
 		if (offer.getBuildingType() != null) {
-			description.
+			info.
 					append("\nТип: ").
 					append(offer.getBuildingType());
 		}
 
 		if (offer.getBuiltYear() != null) {
-			description.
+			info.
 					append("\nГод постройки: ").
 					append(offer.getBuiltYear());
 		}
 
-		if (offer.getSalesAgent() != null) {
-			description.
-					append("\n\nКонтакты: ").
-					append(offer.getSalesAgent().toString());
-		}
-
 		if (offer.getLocation() != null) {
-			description.
+			info.
 					append("\n\nРасположение: ").
 					append(offer.getLocation().toString());
 		}
 
 		if (offer.getDescription() != null) {
-			description.
+			String description = offer.getDescription();
+			description = description.replaceAll("<br>", "");
+			description = description.replaceAll("<b>", "");
+			description = description.replaceAll("</b>", "");
+			description = description.replaceAll("<u>", "");
+			description = description.replaceAll("</u>", "");
+			description = description.replaceAll("<i>", "");
+			description = description.replaceAll("</i>", "");
+
+			info.
 					append("\n\nОписание: ").
 					append("\n").
-					append(offer.getDescription());
+					append(description);
 		}
 
-		return description.toString();
+		if (offer.getSalesAgent() != null) {
+			info.
+					append("\n\nКонтакты: ").
+					append(offer.getSalesAgent().toString());
+		}
+
+		return info.toString();
 	}
 }
