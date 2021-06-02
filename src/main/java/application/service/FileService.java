@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +20,10 @@ public class FileService {
 	private final FileProperties fileProperties;
 
 	public void saveFile(MultipartFile multipartFile) throws IOException {
+		if (!Objects.requireNonNull(multipartFile.getOriginalFilename()).endsWith(".xml")) {
+			throw new IOException("not an xml file");
+		}
+
 		if (!Files.exists(Paths.get("src/main/resources/xml"))) {
 			Files.createDirectory(Paths.get("src/main/resources/xml"));
 		}

@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.properties.FileProperties;
 import application.service.ConstructionSiteService;
 import lombok.AllArgsConstructor;
 import org.json.JSONObject;
@@ -19,8 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/parse")
 public class ParserController {
-	private final String URL = "https://ravenalara.wixsite.com/website-6/_functions/constructionSites";
-
+	private final FileProperties fileProperties;
 	private final ConstructionSiteService constructionSiteService;
 
 	@PostMapping(produces = "application/json")
@@ -32,7 +32,7 @@ public class ParserController {
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			HttpEntity<String> request = new HttpEntity<>(site.toString(), headers);
-			restTemplate.postForObject(URL, request, String.class);
+			restTemplate.postForObject(fileProperties.getCrmUrl(), request, String.class);
 		}
 
 		return "redirect:/";

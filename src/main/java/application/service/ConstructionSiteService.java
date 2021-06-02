@@ -65,7 +65,14 @@ public class ConstructionSiteService {
 					append(offer.getMortgage() != null && offer.getMortgage().equals("да") ? "\nВозможна ипотека" : "");
 		}
 
-		description.append("\n\nОбщая информация:");
+		if (offer.getArea() != null ||
+				offer.getLivingSpace() != null ||
+				offer.getKitchenSpace() != null ||
+				offer.getFloor() != null ||
+				offer.getDealStatus() != null
+		) {
+			description.append("\n\nОбщая информация:");
+		}
 
 		if (offer.getArea() != null) {
 			description.
@@ -97,7 +104,11 @@ public class ConstructionSiteService {
 					append(offer.getDealStatus());
 		}
 
-		description.append("\n\nИнформация о доме:");
+		if (offer.getBuildingType() != null ||
+				offer.getBuiltYear() != null) {
+			description.append("\n\nИнформация о доме:");
+
+		}
 
 		if (offer.getBuildingType() != null) {
 			description.
@@ -126,6 +137,7 @@ public class ConstructionSiteService {
 		if (offer.getDescription() != null) {
 			description.
 					append("\n\nОписание: ").
+					append("\n").
 					append(offer.getDescription());
 		}
 
