@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
@@ -37,6 +38,11 @@ public class FileService {
 		InputStream initialStream = multipartFile.getInputStream();
 		byte[] buffer = new byte[initialStream.available()];
 		initialStream.read(buffer);
+
+		String read = new String(buffer, StandardCharsets.UTF_8);
+		if (!read.startsWith("<")) {
+			buffer = read.substring(read.indexOf("<")).getBytes();
+		}
 
 		try (OutputStream outStream = new FileOutputStream(targetFile)) {
 			outStream.write(buffer);
